@@ -22,26 +22,6 @@
 #include <error.h>
 #include <errno.h>
 
-static void flush_data(int fd)
-{
-	char null;
-	int errors = 0;
-
-	int flags = fcntl(fd, F_GETFL);
-	int prev_flags = flags;
-	flags |= O_NONBLOCK;
-	fcntl(fd, F_SETFL, flags);
-
-	while (1)
-	{
-		if (errors > 65536) break;
-		if (read(fd, &null, 1) == -1)
-			++errors;
-	}
-
-	fcntl(fd, F_SETFL, prev_flags);
-}
-
 static void wait_for(int fd, char *str)
 {
 	int len = strlen(str);
@@ -114,7 +94,7 @@ int main(int argc, char **argv)
 	{
 		int nfds = epoll_wait(epoll_fd, events, 16, -1);
 
-		char c, c_last;
+		char c;
 		for (int n = 0; n < nfds; ++n)
 		{
 			if (events[n].data.fd == acm2_fd)

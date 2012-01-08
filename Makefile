@@ -1,5 +1,5 @@
 CC := gcc
-override __CFLAGS := -std=gnu99 -O2 -I ./src $(CFLAGS)
+override __CFLAGS := -std=gnu99 -Wall -Wextra -O2 -I ./src $(CFLAGS)
 
 LD := gcc
 override __LDFLAGS := $(LDFLAGS)
