@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 	if (argc >= 2)
 		init_line = argv[1];
 
-	int acm2_fd = open("/dev/ttyACM1", O_RDWR | O_NOCTTY, 0);
+	int acm2_fd = open("/dev/ttyACM2", O_RDWR | O_NOCTTY, 0);
 	if (acm2_fd == -1)
 		error_at_line(1, errno, __FILE__, __LINE__, "open(/dev/ttyACM2 failed");
 
