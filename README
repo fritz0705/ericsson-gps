@@ -1,0 +1,13 @@
+ericsson-gps
+============
+ericsson-gps opens /dev/ttyACM2, writes the correct control codes to it, forks, allocates a pseudo terminal, and copies the NMEA stream from /dev/ttyACM2 to the pseudo terminal. Useful for gpsd and Ericsson UMTS modules.
+
+Please consider that this solution is Linux specific because I use epoll and Linux pseudo terminals. Furthermore this code is a simple dirty hack.
+
+Building
+--------
+Type ``make`` and you will get an executable named ``egps``.
+
+Usage
+-----
+Simply execute ``egps``
